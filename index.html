@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>디스테이션 라이더 회원가입</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: Pretendard, sans-serif;
+      background-color: #f8fafc;
+      margin: 0;
+      padding: 24px 16px;
+    }
+    .container {
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto 16px;
+    }
+    h1 {
+      text-align: center;
+      color: #111827;
+      font-size: 20px;
+      margin-bottom: 24px;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: #374151;
+    }
+    input[type="text"],
+    input[type="tel"],
+    input[type="file"],
+    select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+    .inline-options {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .inline-options label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+    }
+    .upload-group {
+      margin-bottom: 16px;
+    }
+    .upload-group input {
+      border-style: dashed;
+    }
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .submit-btn {
+      width: 100%;
+      padding: 16px;
+      background-color: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .privacy-info {
+      font-size: 12px;
+      color: #4b5563;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .privacy-title {
+      font-weight: bold;
+      font-size: 14px;
+      color: #1f2937;
+      margin-bottom: 8px;
+    }
+  </style>
+  <script>
+    function validateForm() {
+      const checkbox = document.getElementById("agree");
+      if (!checkbox.checked) {
+        alert("개인정보 수집 및 이용에 동의하셔야 가입 신청이 가능합니다.");
+        return false;
+      }
+      return true;
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <a href="https://dstationsoft.com">
+      <img src="https://raw.githubusercontent.com/dstationsoft/-/main/001.png" alt="D PASS 로고" />
+    </a>
+    <h1>디스테이션 라이더 회원가입</h1>
+    <form action="https://dpass-server.onrender.com/submit" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
+      <label for="owner">영업자</label>
+      <input type="text" id="owner" name="owner" placeholder="예: 홍길동" required />
+
+      <label for="name">성함</label>
+      <input type="text" id="name" name="name" placeholder="예: 김라이더" required />
+
+      <label for="phone">휴대폰번호</label>
+      <input type="tel" id="phone" name="phone" placeholder="예: 010-1234-5678" required />
+
+      <label for="baeminId">배민비즈회원아이디</label>
+      <input type="text" id="baeminId" name="baeminId" placeholder="예: baemin1234" required />
+
+      <label for="coupangId">쿠팡회원아이디</label>
+      <input type="text" id="coupangId" name="coupangId" placeholder="예: coupang5678" required />
+
+      <label>협력사 운영여부</label>
+      <div class="inline-options">
+        <label><input type="radio" name="partner" value="예" required /> 예</label>
+        <label><input type="radio" name="partner" value="아니오" /> 아니오</label>
+      </div>
+
+      <label for="region">운영희망지역</label>
+      <input type="text" id="region" name="region" placeholder="예: 서울" required />
+
+      <label>정산주기 선택</label>
+      <div class="inline-options">
+        <label><input type="radio" name="prepay" value="일정산" required /> 일정산</label>
+        <label><input type="radio" name="prepay" value="주정산" /> 주정산</label>
+      </div>
+
+      <div class="upload-group">
+        <label for="idcard">운전면허증 사본</label>
+        <input type="file" id="idcard" name="idcard" required />
+      </div>
+
+      <div class="upload-group">
+        <label for="bank">통장 사본</label>
+        <input type="file" id="bank" name="bank" required />
+      </div>
+
+      <div class="privacy-title">디스테이션 디패스 개인정보 이용동의</div>
+      <div class="privacy-info">
+        <p><strong>디스테이션 디패스 가입</strong>을 위해 아래와 같이 개인정보를 수집 및 이용하고자 합니다.</p>
+        <p><strong>1. 수집 및 이용 목적</strong><br />
+        • 라이더 등록을 위한 신원 확인 및 자격 검토<br />
+        • 계약 체결 및 운영 관리<br />
+        • 관련 법령에 따른 의무 이행</p>
+        <p><strong>2. 수집 항목</strong><br />
+        • 필수: 성명, 연락처, 운전면허증 사본, 통장 사본<br />
+        • 선택: 쿠팡/배민 ID 등 추가 정보</p>
+        <p><strong>3. 보유 및 이용 기간</strong><br />
+        • 종료 후 3년 (법령 기준)</p>
+        <p><strong>4. 동의 거부권 및 불이익</strong><br />
+        • 동의 거부 시 가입 제한 가능</p>
+        <p><strong>동의 여부를 위해 아래에 체크해 주시기 바랍니다.</strong></p>
+      </div>
+
+      <div class="checkbox-group">
+        <input type="checkbox" id="agree" />
+        <label for="agree">개인정보 수집 및 이용에 동의합니다.</label>
+      </div>
+
+      <button type="submit" class="submit-btn">가입 신청하기</button>
+    </form>
+  </div>
+</body>
+</html>
